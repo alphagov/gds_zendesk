@@ -1,5 +1,5 @@
 require "gds_zendesk/version"
 
-module GdsZendesk
+module GDSZendesk
   # Your code goes here...
 end
