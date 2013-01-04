@@ -5,7 +5,7 @@ require 'gds_zendesk/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "gds_zendesk"
-  gem.version       = GdsZendesk::VERSION
+  gem.version       = GDSZendesk::VERSION
   gem.authors       = ["Jake Benilov"]
   gem.email         = ["benilov@gmail.com"]
   gem.description   = %q{Client and models for communicating with Zendesk}
