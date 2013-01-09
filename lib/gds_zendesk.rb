@@ -1,5 +1,2 @@
 require "gds_zendesk/version"
-
-module GDSZendesk
-  # Your code goes here...
-end
+require 'gds_zendesk/railtie' if defined?(Rails)
