@@ -13,6 +13,9 @@ require 'yaml'
 end
 END
 
+# This module name is slightly differently capitalised to the main library module
+# The reason for this is that the module name is used by Rails within the 
+# generator CLI tools, and the tools get confused if the module is called GDSZendesk
 module GdsZendesk
   class InstallGenerator < Rails::Generators::Base
     def create_initializer_file
