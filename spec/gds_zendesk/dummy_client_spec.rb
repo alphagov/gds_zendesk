@@ -72,7 +72,10 @@ module GDSZendesk
       end
 
       it "can simulate failures, triggered by a setter" do
-        client = DummyClient.new(mock("logger", :info => nil))
+        logger = mock("logger")
+        client = DummyClient.new(logger)
+        logger.should_receive(:info).with(/Simulating Zendesk user creation failure/)
+
         client.users.should_raise_error
 
         lambda { client.users.create({}) }.should raise_error(ZendeskError)

@@ -87,6 +87,7 @@ module GDSZendesk
 
     def create(new_user_attributes)
       if @should_raise_error
+        @logger.info("Simulating Zendesk user creation failure: #{new_user_attributes.inspect}")
         raise ZendeskError, "error creating users"
       else
         @created_user_attributes = new_user_attributes
