@@ -1,19 +1,28 @@
+require 'gds_zendesk/client_builder'
+require 'gds_zendesk/dummy_client_builder'
+
 module GDSZendesk
   class Client
-    @config_options = {}
+    DEFAULT_OPTIONS = { development_mode: false }
+    @config_options = DEFAULT_OPTIONS
 
     class << self
       def configure(options)
-        @config_options = options
+        @config_options = @config_options.merge(options)
       end
 
       def instance
-        @client ||= ClientBuilder.new(@config_options).build
+        @client ||= appropriate_builder_class.new(@config_options).build
       end
 
       def reset
         @client = nil
-        @config_options = {}
+        @config_options = DEFAULT_OPTIONS
+      end
+
+      protected
+      def appropriate_builder_class
+        @config_options[:development_mode] ? DummyClientBuilder : ClientBuilder
       end
     end
   end
