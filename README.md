@@ -40,3 +40,7 @@ This gem needs to be configured with a Zendesk username and password before it c
 Because Zendesk doesn't provide a staging environment, you might want to use a dummy client during development.
 
 This can be enabled by setting `development_mode: true`. Development is off by default.
+
+## Dummy Zendesk Implementation
+
+Ticket creation failures can be simulated by including `break_zendesk` anywhere in the ticket description.
