@@ -1,13 +1,16 @@
 # GDS Zendesk
 
-This gem wraps parts of the Zendesk API functionality to make it a bit friendlier to use.
+This gem wraps parts of the Zendesk API functionality to make it a bit friendlier to use. 
+
+The [zendesk_api](https://github.com/zendesk/zendesk_api_client_rb) gem is used under the covers.
 
 Features:
 
 * Rails integration
 * A dummy Zendesk client implementation, since Zendesk doesn't provide a staging environment
+* Better error handling than the `zendesk_api` gem. Zendesk errors cause Ruby exceptions to be thrown.
 
-## Installation
+## Rails installation
 
 Simply add the gem to your Gemfile and bundle it up:
 
