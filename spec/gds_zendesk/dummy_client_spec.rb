@@ -42,13 +42,17 @@ module GDSZendesk
         client.ticket.comment.should eq("Comment")
       end
 
-      it "can simulate failures, triggered by a specific description" do
+      it "can simulate failures, triggered by a specific description or comment" do
         logger = mock("logger")
         client = DummyClient.new(logger)
-        logger.should_receive(:info).with(/Simulating Zendesk ticket creation failure/)
+        logger.should_receive(:info).with(/Simulating Zendesk ticket creation failure/).twice
 
         lambda { 
           client.ticket.create(description: "break_zendesk")
+        }.should raise_error(ZendeskError)
+        
+        lambda { 
+          client.ticket.create(comment: { value: "break_zendesk" })
         }.should raise_error(ZendeskError)
       end
 

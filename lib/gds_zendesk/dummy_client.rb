@@ -54,12 +54,12 @@ module GDSZendesk
     end
 
     def comment
-      @options[:comment][:value]
+      @options[:comment][:value] unless @options[:comment].nil?
     end
 
     protected
     def should_raise_error?
-      description =~ /break_zendesk/ or @should_raise_error
+      description =~ /break_zendesk/ or comment =~ /break_zendesk/ or @should_raise_error
     end
 
     def value_of_field_with_id(field_id)
