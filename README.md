@@ -35,12 +35,13 @@ This gem needs to be configured with a Zendesk username and password before it c
    )
    ```
 
-### Enabling a dummy Zendesk client (development mode)
+### Enabling development mode
 
-Because Zendesk doesn't provide a staging environment, you might want to use a dummy client during development.
+Because Zendesk doesn't provide a staging environment, it is advised to use the development mode 
+during development and testing. When this mode is enabled: 
+* the real Zendesk client is replaced by an interface-equivalent dummy implementation (which makes no network calls)
+* ticket creation failures can be simulated by including `break_zendesk` anywhere in the ticket description
 
-This can be enabled by setting `development_mode: true`. Development mode is off by default.
+Development mode can be enabled by configuring `development_mode: true`. It is off by default.
 
-## Dummy Zendesk Implementation
 
-Ticket creation failures can be simulated by including `break_zendesk` anywhere in the ticket description.
