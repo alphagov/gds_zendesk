@@ -1,14 +1,20 @@
 # GDS Zendesk
 
-This gem wraps parts of the Zendesk API functionality to make it a bit friendlier to use. 
+## What is it?
+
+`gds_zendesk` is a Ruby gem which (partially) wraps the [Zendesk REST API v2](http://developer.zendesk.com/documentation/rest_api/introduction.html).
 
 The [zendesk_api](https://github.com/zendesk/zendesk_api_client_rb) gem is used under the covers.
 
-Features:
+## Why does it exist?
 
-* Rails integration
-* A dummy Zendesk client implementation, since Zendesk doesn't provide a staging environment
-* Better error handling than the `zendesk_api` gem. Zendesk errors cause Ruby exceptions to be thrown.
+This gem has certain advantages over the `zendesk_api` gem:
+
+*  Rails integration
+*  A dummy Zendesk client implementation, since Zendesk doesn't provide a staging environment
+*  Ability to simulate error conditions
+*  Better error handling. The only way to detect errors with `zendesk_api` is to use callbacks.
+   Within `gds_zendesk`, exceptions are used instead.
 
 ## Rails installation
 
