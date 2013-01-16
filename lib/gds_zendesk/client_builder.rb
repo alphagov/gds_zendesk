@@ -12,14 +12,14 @@ module GDSZendesk
     end
 
     def callback(env)
-        logger.info env
-        
-        status_401 = env[:status].to_s.start_with? "401"
-        too_many_login_attempts = env[:body].to_s.start_with? "Too many failed login attempts"
-        
-        raise ZendeskError.new("Authentication Error: #{env.inspect}", env[:body]) if status_401 || too_many_login_attempts
-        
-        raise ZendeskError.new("Error creating ticket: #{env.inspect}", env[:body]) if env[:body]["error"]
+      logger.info env
+      
+      status_401 = env[:status].to_s.start_with? "401"
+      too_many_login_attempts = env[:body].to_s.start_with? "Too many failed login attempts"
+      
+      raise ZendeskError.new("Authentication Error: #{env.inspect}", env[:body]) if status_401 || too_many_login_attempts
+      
+      raise ZendeskError.new("Error creating ticket: #{env.inspect}", env[:body]) if env[:body]["error"]
     end
 
     def build
