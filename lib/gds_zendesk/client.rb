@@ -4,25 +4,22 @@ require 'gds_zendesk/dummy_client_builder'
 module GDSZendesk
   class Client
     DEFAULT_OPTIONS = { development_mode: false }
-    @config_options = DEFAULT_OPTIONS
 
     class << self
-      def configure(options)
-        @config_options = @config_options.merge(options)
-      end
-
-      def instance
-        @client ||= appropriate_builder_class.new(@config_options).build
-      end
-
-      def reset
-        @client = nil
-        @config_options = DEFAULT_OPTIONS
+      def build(options = {})
+        options_with_defaults = default_options.merge(options)
+        appropriate_builder_class = options[:development_mode] ? DummyClientBuilder : ClientBuilder
+        client_builder = appropriate_builder_class.new(options_with_defaults)
+        client_builder.build
       end
 
       protected
-      def appropriate_builder_class
-        @config_options[:development_mode] ? DummyClientBuilder : ClientBuilder
+      def default_options
+        if defined?(Rails)
+          DEFAULT_OPTIONS.merge(Rails.application.config.gds_zendesk.to_hash)
+        else
+          DEFAULT_OPTIONS
+        end
       end
     end
   end
