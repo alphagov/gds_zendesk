@@ -37,14 +37,14 @@ module GDSZendesk
           successful_response = { status: 200, body: "OK" }
           custom_logger.should_receive(:info).with(successful_response)
 
-          builder.callback[successful_response]
+          builder.callback(successful_response)
         end
       end
 
       context "a response that the request isn't authorised" do
         it "should raise an error" do
           lambda {
-            builder.callback[status: 401, body: {"error" => "Unauth" }] 
+            builder.callback(status: 401, body: {"error" => "Unauth" })
           }.should raise_error(ZendeskError, /Authentication Error/)
         end
       end
@@ -52,16 +52,16 @@ module GDSZendesk
       context "a response that the account has been locked out" do
         it "should raise an error" do
           response = { status: 403, body: "Too many failed login attempts for user ..." }
-          lambda { builder.callback[response]}.should raise_error(ZendeskError, 
-                                                                  /Authentication Error/)
+          lambda { builder.callback(response) }.should raise_error(ZendeskError, 
+                                                                   /Authentication Error/)
         end
       end
 
       context "a response that some zendesk validation failed" do
         it "should raise an error" do
           response = { status: 422, body: {"error" => "Some validation failure" } }
-          lambda { builder.callback[response]}.should raise_error(ZendeskError, 
-                                                                  /Error creating ticket/)
+          lambda { builder.callback(response) }.should raise_error(ZendeskError, 
+                                                                   /Error creating ticket/)
         end
       end
     end

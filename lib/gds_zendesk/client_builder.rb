@@ -11,9 +11,7 @@ module GDSZendesk
       @config_options = defaults.merge(config_options)
     end
 
-    def callback
-      logger = @config_options[:logger]
-      lambda do |env|
+    def callback(env)
         logger.info env
         
         status_401 = env[:status].to_s.start_with? "401"
@@ -22,7 +20,6 @@ module GDSZendesk
         raise ZendeskError.new("Authentication Error: #{env.inspect}", env[:body]) if status_401 || too_many_login_attempts
         
         raise ZendeskError.new("Error creating ticket: #{env.inspect}", env[:body]) if env[:body]["error"]
-      end
     end
 
     def build
@@ -35,12 +32,16 @@ module GDSZendesk
         config.logger = @config_options[:logger]
       }
 
-      client.insert_callback(&callback)
+      client.insert_callback { |env| callback(env) }
 
       client
     end
 
     protected
+    def logger
+      @config_options[:logger]
+    end
+
     def check_that_username_and_password_are_provided
       raise ArgumentError, "Zendesk username not provided" if @config_options[:username].nil?
       raise ArgumentError, "Zendesk password not provided" if @config_options[:password].nil?
