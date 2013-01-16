@@ -1,11 +1,11 @@
 module GDSZendesk
   class ZendeskError < StandardError
-    attr_reader :underlying_error_details_from_zendesk
+    attr_reader :underlying_message
 
-    def initialize(message, underlying_error_details_from_zendesk = nil)
+    def initialize(message, underlying_message = nil)
       super(message)
 
-      @underlying_error_details_from_zendesk = underlying_error_details_from_zendesk
+      @underlying_message = underlying_message
     end
   end
 end
