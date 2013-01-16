@@ -1,12 +1,19 @@
+require 'null_logger'
 require 'gds_zendesk/field_mappings'
 
 module GDSZendesk
   class DummyClient
     attr_reader :ticket, :users
 
-    def initialize(logger)
+    def initialize(options)
+      logger = defaults.merge(options)[:logger]
       @ticket = DummyTicket.new(logger)
       @users = DummyUsers.new(logger)
+    end
+
+    protected
+    def defaults
+      { logger: NullLogger.instance }
     end
   end
 

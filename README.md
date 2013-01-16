@@ -16,7 +16,9 @@ This gem has certain advantages over the `zendesk_api` gem:
 *  Better error handling. The only way to detect errors with `zendesk_api` is to use callbacks.
    Within `gds_zendesk`, exceptions are used instead.
 
-## Rails installation
+## Rails integration
+
+### Installation
 
 Simply add the gem to your Gemfile and bundle it up:
 
@@ -28,23 +30,14 @@ Run the installation generator:
 
 This generates an initializer at `config/initializers/gds_zendesk.rb`.
 
-## Configuration
+### Configuration
 
-### Mandatory settings
+#### Mandatory settings
 
 This gem needs to be configured with a Zendesk username and password before it can be used.
+These are set in `config/initializers/gds_zendesk.rb`
 
-*  **Within Rails** - adjust the settings in `config/initializers/gds_zendesk.rb`
-*  **Outside Rails** - make the following call:
-   
-   ```
-   GDSZendesk::Client.configure(
-     username: [...]
-     password: [...]
-   )
-   ```
-
-### Enabling development mode
+#### Enabling development mode
 
 Because Zendesk doesn't provide a staging environment, it is advised to use the development mode 
 during development and testing. When this mode is enabled: 
@@ -53,4 +46,12 @@ during development and testing. When this mode is enabled:
 
 Development mode can be enabled by configuring `development_mode: true`. It is off by default.
 
+## Usage
 
+Invoke
+
+```
+GDSZendesk::Client.build
+```
+
+to create a new client.
