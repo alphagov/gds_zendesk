@@ -22,7 +22,7 @@ module GDSZendesk
       @options = options
       if should_raise_error?
         @logger.info("Simulating Zendesk ticket creation failure: #{options.inspect}")
-        raise ZendeskError, "Error creating ticket: #{options.inspect}"
+        raise ZendeskError.new("Error creating ticket: #{options.inspect}", "sample error message from Zendesk")
       else
         @logger.info("Zendesk ticket created: #{options.inspect}")
       end

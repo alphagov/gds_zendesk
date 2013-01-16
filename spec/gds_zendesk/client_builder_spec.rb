@@ -43,8 +43,9 @@ module GDSZendesk
 
       context "a response that the request isn't authorised" do
         it "should raise an error" do
-          lambda { builder.callback[status: 401] }.should raise_error(ZendeskError, 
-                                                                      /Authentication Error/)
+          lambda {
+            builder.callback[status: 401, body: {"error" => "Unauth" }] 
+          }.should raise_error(ZendeskError, /Authentication Error/)
         end
       end
 
