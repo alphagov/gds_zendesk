@@ -9,17 +9,17 @@ module GDSZendesk
         logger = stub("logger")
         logger.should_receive(:info).with("Zendesk ticket created: #{ticket_options.inspect}")
 
-        client = DummyClient.new(logger)
+        client = DummyClient.new(logger: logger)
         client.ticket.create(ticket_options)
       end
 
       it "should return something non-null upon success" do
-        client = DummyClient.new(mock("logger", :info => nil))
+        client = DummyClient.new(logger: mock("logger", :info => nil))
         client.ticket.create({}).should_not be_nil
       end
 
       it "should provide accessors to the ticket options for testing purposes" do
-        client = DummyClient.new(mock("logger", :info => nil))
+        client = DummyClient.new(logger: mock("logger", :info => nil))
         client.ticket.create(
           subject: "A",
           description: "B",
@@ -44,7 +44,7 @@ module GDSZendesk
 
       it "can simulate failures, triggered by a specific description or comment" do
         logger = mock("logger")
-        client = DummyClient.new(logger)
+        client = DummyClient.new(logger: logger)
         logger.should_receive(:info).with(/Simulating Zendesk ticket creation failure/).twice
 
         lambda { 
@@ -57,7 +57,7 @@ module GDSZendesk
       end
 
       it "can simulate failures, triggered by a setter" do
-        client = DummyClient.new(mock("logger", :info => nil))
+        client = DummyClient.new(logger: mock("logger", :info => nil))
         client.ticket.should_raise_error
 
         lambda { client.ticket.create({}) }.should raise_error(ZendeskError)
@@ -71,13 +71,13 @@ module GDSZendesk
         logger = stub("logger")
         logger.should_receive(:info).with("Zendesk user created: #{created_user_options.inspect}")
 
-        client = DummyClient.new(logger)
+        client = DummyClient.new(logger: logger)
         client.users.create(created_user_options)
       end
 
       it "can simulate failures, triggered by a setter" do
         logger = mock("logger")
-        client = DummyClient.new(logger)
+        client = DummyClient.new(logger: logger)
         logger.should_receive(:info).with(/Simulating Zendesk user creation failure/)
 
         client.users.should_raise_error
