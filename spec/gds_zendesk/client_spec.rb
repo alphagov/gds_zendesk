@@ -30,6 +30,15 @@ module GDSZendesk
       Client.new(valid_credentials.merge(logger: custom_logger)).config_options[:logger].should eq(custom_logger)
     end
 
+    it "should provide access to the underlying ZendeskAPI::Client#ticket and #users method" do
+      underlying_client = mock("ZendeskAPI::Client", ticket: "ticket", users: "users")
+      underlying_client.stub!(:insert_callback)
+      ZendeskAPI::Client.stub!(:new).and_return(underlying_client)
+
+      Client.new(valid_credentials).ticket.should == "ticket"
+      Client.new(valid_credentials).users.should == "users"
+    end
+
     context "upon a response from the Zendesk API" do
       let(:custom_logger) { stub("logger").as_null_object }
       let(:valid_options) { {logger: custom_logger, username: "user", password: "pass"} }

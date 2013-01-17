@@ -7,7 +7,7 @@ require 'gds_zendesk/zendesk_error'
 module GDSZendesk
   class Client
     extend Forwardable
-    def_delegator :@zendesk_client, :ticket, :users
+    def_delegators :@zendesk_client, :ticket, :users
 
     attr_accessor :config_options
 
