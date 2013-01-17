@@ -6,9 +6,13 @@ module GDSZendesk
     attr_reader :ticket, :users
 
     def initialize(options)
-      logger = defaults.merge(options)[:logger]
-      @ticket = DummyTicket.new(logger)
-      @users = DummyUsers.new(logger)
+      @logger = defaults.merge(options)[:logger]
+      reset
+    end
+
+    def reset
+      @ticket = DummyTicket.new(@logger)
+      @users = DummyUsers.new(@logger)
     end
 
     protected
