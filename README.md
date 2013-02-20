@@ -51,7 +51,7 @@ Development mode can be enabled by configuring `development_mode: true`. It is o
 Invoke
 
 ```
-GDSZendesk::Client.build
+GDSZendesk::Client.new(config_options)
 ```
 
 to create a new client.
