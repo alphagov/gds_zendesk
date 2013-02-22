@@ -22,6 +22,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rake', '10.0.3'
   gem.add_development_dependency 'rspec', '2.12.0'
-  gem.add_development_dependency 'gem_publisher', '~> 1.1.1'
-  gem.add_development_dependency "gemfury"
+  gem.add_development_dependency 'gem_publisher', '1.2.0'
+  gem.add_development_dependency "gemfury", '0.4.12'
 end
