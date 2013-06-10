@@ -49,18 +49,18 @@ module GDSZendesk
 
         lambda { 
           client.ticket.create(description: "break_zendesk")
-        }.should raise_error(ZendeskError)
+        }.should raise_error(ZendeskAPI::Error::RecordInvalid)
         
         lambda { 
           client.ticket.create(comment: { value: "break_zendesk" })
-        }.should raise_error(ZendeskError)
+        }.should raise_error(ZendeskAPI::Error::RecordInvalid)
       end
 
       it "can simulate failures, triggered by a setter" do
         client = DummyClient.new(logger: mock("logger", :info => nil))
         client.ticket.should_raise_error
 
-        lambda { client.ticket.create({}) }.should raise_error(ZendeskError)
+        lambda { client.ticket.create({}) }.should raise_error(ZendeskAPI::Error::RecordInvalid)
       end
     end
 
@@ -82,7 +82,7 @@ module GDSZendesk
 
         client.users.should_raise_error
 
-        lambda { client.users.create({}) }.should raise_error(ZendeskError)
+        lambda { client.users.create({}) }.should raise_error(ZendeskAPI::Error::RecordInvalid)
       end
     end
   end
