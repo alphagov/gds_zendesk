@@ -1,5 +1,6 @@
 require 'null_logger'
 require 'gds_zendesk/field_mappings'
+require 'zendesk_api/error'
 
 module GDSZendesk
   class DummyClient
@@ -33,7 +34,7 @@ module GDSZendesk
       @options = options
       if should_raise_error?
         @logger.info("Simulating Zendesk ticket creation failure: #{options.inspect}")
-        raise ZendeskError.new("Error creating ticket: #{options.inspect}", "sample error message from Zendesk")
+        raise ZendeskAPI::Error::RecordInvalid.new(body: {"details" => "sample error message from Zendesk"})
       else
         @logger.info("Zendesk ticket created: #{options.inspect}")
       end
@@ -99,7 +100,7 @@ module GDSZendesk
     def create(new_user_attributes)
       if @should_raise_error
         @logger.info("Simulating Zendesk user creation failure: #{new_user_attributes.inspect}")
-        raise ZendeskError, "error creating users"
+        raise ZendeskAPI::Error::RecordInvalid.new(body: {"details" => "error creating users"})
       else
         @created_user_attributes = new_user_attributes
         @logger.info("Zendesk user created: #{new_user_attributes.inspect}")

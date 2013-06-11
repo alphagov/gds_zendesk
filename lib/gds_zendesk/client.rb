@@ -2,8 +2,6 @@ require 'forwardable'
 require 'null_logger'
 require 'zendesk_api'
 
-require 'gds_zendesk/zendesk_error'
-
 module GDSZendesk
   class Client
     extend Forwardable
@@ -16,30 +14,15 @@ module GDSZendesk
       @zendesk_client = build
     end
 
-    def callback(env)
-      logger.info env
-      
-      status_401 = env[:status].to_s.start_with? "401"
-      too_many_login_attempts = env[:body].to_s.start_with? "Too many failed login attempts"
-      
-      raise ZendeskError.new("Authentication Error: #{env.inspect}", env[:body]) if status_401 || too_many_login_attempts
-      
-      raise ZendeskError.new("Error creating ticket: #{env.inspect}", env[:body]) if env[:body]["error"]
-    end
-
     def build
       check_that_username_and_password_are_provided
 
-      client = ZendeskAPI::Client.new { |config|
+      ZendeskAPI::Client.new { |config|
         config.url = "https://govuk.zendesk.com/api/v2/"
         config.username = @config_options[:username]
         config.password = @config_options[:password]
         config.logger = @config_options[:logger]
       }
-
-      client.insert_callback { |env| callback(env) }
-
-      client
     end
 
     protected
