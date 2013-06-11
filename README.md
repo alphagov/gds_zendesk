@@ -13,8 +13,6 @@ This gem has certain advantages over the `zendesk_api` gem:
 *  Rails integration
 *  A dummy Zendesk client implementation, since Zendesk doesn't provide a staging environment
 *  Ability to simulate error conditions
-*  Better error handling. The only way to detect errors with `zendesk_api` is to use callbacks.
-   Within `gds_zendesk`, exceptions are used instead.
 
 ## Rails integration
 
