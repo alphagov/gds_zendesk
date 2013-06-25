@@ -45,7 +45,7 @@ module GDSZendesk
       @should_raise_error = true
     end
 
-    [:subject, :tags, :description, :collaborators].each do |property|
+    [:subject, :tags, :description, :collaborators, :priority].each do |property|
       define_method(property) do
         @options[property]
       end

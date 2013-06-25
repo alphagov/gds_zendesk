@@ -23,6 +23,7 @@ module GDSZendesk
         client.ticket.create(
           subject: "A",
           description: "B",
+          priority: "normal",
           requester: { "locale_id" => 1, "email" => "c@d.com", "name" => "E F" },
           collaborators: "H, I, J",
           fields: [{"id" => FIELD_MAPPINGS[:needed_by_date], "value" => "19700101"},
@@ -40,6 +41,7 @@ module GDSZendesk
         client.ticket.not_before_date.should eq("19700102")
         client.ticket.tags.should eq("tags")
         client.ticket.comment.should eq("Comment")
+        client.ticket.priority.should eq("normal")
       end
 
       it "can simulate failures, triggered by a specific description or comment" do
