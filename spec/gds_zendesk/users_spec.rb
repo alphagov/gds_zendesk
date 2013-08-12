@@ -21,11 +21,20 @@ module GDSZendesk
           users.create_or_update_user(existing_user_being_requested)
         end
       end
+
+      it "should know whether the user is suspended or not" do
+        @stub_existing_zendesk_user.should_receive(:[]).with("suspended").and_return(true)
+        users.suspended?("test@test.com").should be_true
+      end
     end
 
     context "non-existent users" do
       before do
         stub_zendesk_users.should_receive(:search).with(query: "test@test.com").and_return([])
+      end
+
+      it "should not be suspended" do
+        users.suspended?("test@test.com").should be_false
       end
 
       context "creating/updating" do
