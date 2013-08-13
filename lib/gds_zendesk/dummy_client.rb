@@ -45,6 +45,10 @@ module GDSZendesk
       @should_raise_error = true
     end
 
+    def raised?
+      not @options.nil?
+    end
+
     [:subject, :tags, :description, :collaborators, :priority].each do |property|
       define_method(property) do
         @options[property]
@@ -87,14 +91,23 @@ module GDSZendesk
       @logger = logger
       @created_user_attributes = {}
       @should_raise_error = false
+      @should_be_suspended = false
     end
 
     def should_raise_error
       @should_raise_error = true
     end
 
+    def should_be_suspended
+      @should_be_suspended = true
+    end
+
     def search(attributes)
       []
+    end
+
+    def suspended?(user_email)
+      @should_be_suspended
     end
 
     def create(new_user_attributes)
