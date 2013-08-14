@@ -14,6 +14,16 @@ module GDSZendesk
       end
     end
 
+    def suspended?(user_email)
+      existing_users = find_by_email(user_email)
+      if existing_users.empty?
+        false
+      else
+        existing_user_in_zendesk = existing_users.first
+        existing_user_in_zendesk["suspended"]
+      end
+    end
+
     protected
     def find_by_email(email)
       @client.users.search(query: email).to_a
