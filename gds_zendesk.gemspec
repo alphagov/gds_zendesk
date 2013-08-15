@@ -25,4 +25,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'gem_publisher', '1.2.0'
   gem.add_development_dependency 'faraday_middleware', '0.8.8' # had to pin for gem resolution to work on Jenkins
   gem.add_development_dependency "gemfury", '0.4.12'
+  gem.add_development_dependency "webmock", '1.9.0'
 end
