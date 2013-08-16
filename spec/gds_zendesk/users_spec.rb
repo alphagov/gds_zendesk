@@ -8,7 +8,7 @@ module GDSZendesk
   describe Users do
     include GDSZendesk::TestHelpers
 
-    let(:users) { Client.new(valid_credentials).users }
+    let(:users) { Client.new(valid_zendesk_credentials).users }
 
     context "existing users" do
       before do

@@ -30,11 +30,11 @@ module GDSZendesk
     end
 
     def create(requested_user)
-      @client.users.create(email: requested_user.email,
-                           name: requested_user.name,
-                           details: "Job title: #{requested_user.job}",
-                           phone: requested_user.phone,
-                           verified: true)
+      @client.users.create!(email: requested_user.email,
+                            name: requested_user.name,
+                            details: "Job title: #{requested_user.job}",
+                            phone: requested_user.phone,
+                            verified: true)
     end
 
     def update(existing_user_in_zendesk, requested_user)

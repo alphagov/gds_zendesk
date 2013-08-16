@@ -7,11 +7,13 @@ module GDSZendesk
   describe Client do
     include GDSZendesk::TestHelpers
 
+    def valid_credentials
+      { "username" => "user", "password" => "pass" }
+    end
+
     def client(options = {})
       Client.new(valid_credentials.merge(options))
     end
-
-    let(:valid_credentials) { { username: "user", password: "pass" } }
 
     it "should raise an error if no username is provided" do
       lambda { Client.new(password: "abc") }.should raise_error(ArgumentError,
@@ -34,6 +36,7 @@ module GDSZendesk
     end
 
     it "should raise tickets in Zendesk" do
+      self.valid_zendesk_credentials = valid_credentials
       post_stub = stub_zendesk_ticket_creation(some: "data")
 
       client.ticket.create(some: "data")

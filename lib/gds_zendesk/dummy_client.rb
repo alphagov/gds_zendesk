@@ -30,7 +30,7 @@ module GDSZendesk
       @should_raise_error = false
     end
 
-    def create(options)
+    def create!(options)
       @options = options
       if should_raise_error?
         @logger.info("Simulating Zendesk ticket creation failure: #{options.inspect}")
@@ -110,7 +110,7 @@ module GDSZendesk
       @should_be_suspended
     end
 
-    def create(new_user_attributes)
+    def create!(new_user_attributes)
       if @should_raise_error
         @logger.info("Simulating Zendesk user creation failure: #{new_user_attributes.inspect}")
         raise ZendeskAPI::Error::RecordInvalid.new(body: {"details" => "error creating users"})
