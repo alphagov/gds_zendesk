@@ -13,37 +13,6 @@ module GDSZendesk
         client.ticket.create!(ticket_options)
       end
 
-      it "should return something non-null upon success" do
-        client = DummyClient.new(logger: mock("logger", :info => nil))
-        client.ticket.create!({}).should_not be_nil
-      end
-
-      it "should provide accessors to the ticket options for testing purposes" do
-        client = DummyClient.new(logger: mock("logger", :info => nil))
-        client.ticket.create!(
-          subject: "A",
-          description: "B",
-          priority: "normal",
-          requester: { "locale_id" => 1, "email" => "c@d.com", "name" => "E F" },
-          collaborators: "H, I, J",
-          fields: [{"id" => FIELD_MAPPINGS[:needed_by_date], "value" => "19700101"},
-                  {"id" => FIELD_MAPPINGS[:not_before_date], "value" => "19700102"}],
-          tags: "tags",
-          comment: { value: "Comment" }
-        )
-
-        client.ticket.subject.should eq("A")
-        client.ticket.description.should eq("B")
-        client.ticket.email.should eq("c@d.com")
-        client.ticket.name.should eq("E F")
-        client.ticket.collaborators.should eq("H, I, J")
-        client.ticket.needed_by_date.should eq("19700101")
-        client.ticket.not_before_date.should eq("19700102")
-        client.ticket.tags.should eq("tags")
-        client.ticket.comment.should eq("Comment")
-        client.ticket.priority.should eq("normal")
-      end
-
       it "can simulate failures, triggered by a specific description or comment" do
         logger = mock("logger")
         client = DummyClient.new(logger: logger)
@@ -57,13 +26,6 @@ module GDSZendesk
           client.ticket.create!(comment: { value: "break_zendesk" })
         }.should raise_error(ZendeskAPI::Error::RecordInvalid)
       end
-
-      it "can simulate failures, triggered by a setter" do
-        client = DummyClient.new(logger: mock("logger", :info => nil))
-        client.ticket.should_raise_error
-
-        lambda { client.ticket.create!({}) }.should raise_error(ZendeskAPI::Error::RecordInvalid)
-      end
     end
 
     context "when a user has been created" do
@@ -75,16 +37,6 @@ module GDSZendesk
 
         client = DummyClient.new(logger: logger)
         client.users.create!(created_user_options)
-      end
-
-      it "can simulate failures, triggered by a setter" do
-        logger = mock("logger")
-        client = DummyClient.new(logger: logger)
-        logger.should_receive(:info).with(/Simulating Zendesk user creation failure/)
-
-        client.users.should_raise_error
-
-        lambda { client.users.create!({}) }.should raise_error(ZendeskAPI::Error::RecordInvalid)
       end
     end
   end
