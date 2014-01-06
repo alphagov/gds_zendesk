@@ -9,6 +9,6 @@ task :default => :spec
 
 desc "Publish the gem"
 task :publish_gem do |t|
-  gem = GemPublisher.publish_if_updated("gds_zendesk.gemspec", :gemfury, :as => 'govuk')
+  gem = GemPublisher.publish_if_updated("gds_zendesk.gemspec", :rubygems)
   puts "Published #{gem}" if gem
 end
