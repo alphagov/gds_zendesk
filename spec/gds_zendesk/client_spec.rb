@@ -16,23 +16,23 @@ module GDSZendesk
     end
 
     it "should raise an error if no username is provided" do
-      lambda { Client.new(password: "abc") }.should raise_error(ArgumentError,
+      expect { Client.new(password: "abc") }.to raise_error(ArgumentError,
         /username not provided/)
     end
 
     it "should raise an error if no password is provided" do
-      lambda { Client.new(username: "abc") }.should raise_error(ArgumentError,
+      expect { Client.new(username: "abc") }.to raise_error(ArgumentError,
         /password not provided/)
     end
 
     it "should use a null logger if no logger has been provided" do
-      client.config_options[:logger].should be_an_instance_of(NullLogger::Logger)
+      expect(client.config_options[:logger]).to be_an_instance_of(NullLogger::Logger)
     end
 
     it "should use the passed logger if one has been provided" do
-      custom_logger = stub("logger")
+      custom_logger = double("logger")
 
-      client(logger: custom_logger).config_options[:logger].should eq(custom_logger)
+      expect(client(logger: custom_logger).config_options[:logger]).to eq(custom_logger)
     end
 
     it "should raise tickets in Zendesk" do
@@ -41,7 +41,7 @@ module GDSZendesk
 
       client.ticket.create(some: "data")
 
-      post_stub.should have_been_requested
+      expect(post_stub).to have_been_requested
     end
   end
 end
