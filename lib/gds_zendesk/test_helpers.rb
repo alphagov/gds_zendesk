@@ -4,39 +4,43 @@ module GDSZendesk
   module TestHelpers
     def zendesk_has_no_user_with_email(email)
       stub_request(:get, "#{zendesk_endpoint}/users/search?query=#{email}").
-        to_return(body: {users: [], previous_page: nil, next_page: nil, count: 0}.to_json, 
+        to_return(body: {users: [], previous_page: nil, next_page: nil, count: 0}.to_json,
                   headers: {'Content-Type' => 'application/json'})
     end
 
     def zendesk_has_user(user_details)
       stub_request(:get, "#{zendesk_endpoint}/users/search?query=#{user_details[:email]}").
-        to_return(body: {users: [user_details], previous_page: nil, next_page: nil, count: 1}.to_json, 
+        to_return(body: {users: [user_details], previous_page: nil, next_page: nil, count: 1}.to_json,
                   headers: {'Content-Type' => 'application/json'})
     end
 
     def stub_zendesk_user_creation(user_properties = nil)
       stub = stub_http_request(:post, "#{zendesk_endpoint}/users")
       stub.with(body: {user: user_properties}) unless user_properties.nil?
-      stub.to_return(status: 201, body: { user: { id: 12345, name: "abc" }})
+      stub.to_return(status: 201, body: { user: { id: 12345, name: "abc" }}.to_json,
+                     headers: {'Content-Type' => 'application/json'})
     end
 
     def stub_zendesk_ticket_creation(ticket_properties = nil)
       stub = stub_http_request(:post, "#{zendesk_endpoint}/tickets")
       stub.with(body: {ticket: ticket_properties}) unless ticket_properties.nil?
-      stub.to_return(status: 201, body: { ticket: { id: 12345 }})
+      stub.to_return(status: 201, body: { ticket: { id: 12345 }}.to_json,
+                     headers: {'Content-Type' => 'application/json'})
     end
 
     def stub_zendesk_ticket_creation_with_body(body)
       stub_http_request(:post, "#{zendesk_endpoint}/tickets").
         with(body: body).
-        to_return(status: 201, body: { ticket: { id: 12345 }})
+        to_return(status: 201, body: { ticket: { id: 12345 }}.to_json,
+                  headers: {'Content-Type' => 'application/json'})
     end
 
     def stub_zendesk_user_update(user_id, user_properties)
       stub_http_request(:put, "#{zendesk_endpoint}/users/#{user_id}").
         with(body: {user: user_properties}).
-        to_return(status: 201, body: { user: { id: 12345, name: "abc" }})
-    end      
+        to_return(status: 201, body: { user: { id: 12345, name: "abc" }}.to_json,
+                  headers: {'Content-Type' => 'application/json'})
+    end
 
     def zendesk_is_unavailable
       stub_request(:any, /#{zendesk_endpoint}\/.*/).to_return(status: 503)
