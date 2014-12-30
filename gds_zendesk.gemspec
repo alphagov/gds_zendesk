@@ -23,6 +23,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake', '10.0.3'
   gem.add_development_dependency 'rspec', '2.12.0'
   gem.add_development_dependency 'gem_publisher', '1.2.0'
-  gem.add_development_dependency 'faraday_middleware', '0.8.8' # had to pin for gem resolution to work on Jenkins
   gem.add_development_dependency "webmock", '1.9.0'
 end
