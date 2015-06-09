@@ -1,6 +1,12 @@
+# 1.0.5
+
+* Update the `zendesk_api` library to v1.8.0 (this picks up a bugfix for
+ticket creation succeeding when the API returns a redirect - see
+https://github.com/zendesk/zendesk_api_client_rb/pull/236)
+
 # 1.0.4
 
-* Update the `zendesk_api` library to the v1.6.3 (to keep up to date)
+* Update the `zendesk_api` library to v1.6.3 (to keep up to date)
 
 # 1.0.3
 
