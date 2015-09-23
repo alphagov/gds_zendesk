@@ -1,3 +1,7 @@
+# 2.0.0 (unreleased)
+
+* Removed: GDSZendesk::FIELD_MAPPINGS.
+
 # 1.0.5
 
 * Update the `zendesk_api` library to v1.8.0 (this picks up a bugfix for
