@@ -1,5 +1,4 @@
 require 'null_logger'
-require 'gds_zendesk/field_mappings'
 require 'zendesk_api/error'
 
 module GDSZendesk
