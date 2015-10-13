@@ -56,9 +56,8 @@ module GDSZendesk
       false
     end
 
-    def create!(new_user_attributes)
-      @created_user_attributes = new_user_attributes
-      @logger.info("Zendesk user created: #{new_user_attributes.inspect}")
+    def create_or_update_user(new_attributes)
+      @logger.info("Zendesk user created or updated: #{new_attributes.inspect}")
     end
   end
 end
