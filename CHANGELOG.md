@@ -1,6 +1,7 @@
-# 2.0.0 (unreleased)
+# 2.0.0
 
 * Removed: GDSZendesk::FIELD_MAPPINGS.
+* Fixed DummyUsers to behave like the real Users class.
 
 # 1.0.5
 
