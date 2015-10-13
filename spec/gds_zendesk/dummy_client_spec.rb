@@ -29,14 +29,14 @@ module GDSZendesk
     end
 
     context "when a user has been created" do
-      let(:created_user_options) { { email: "a@b.com" } }
+      let(:options) { { email: "a@b.com" } }
 
       it "should log the user details" do
         logger = double("logger")
-        expect(logger).to receive(:info).with("Zendesk user created: #{created_user_options.inspect}")
+        expect(logger).to receive(:info).with("Zendesk user created or updated: #{options.inspect}")
 
         client = DummyClient.new(logger: logger)
-        client.users.create!(created_user_options)
+        client.users.create_or_update_user(options)
       end
     end
   end
