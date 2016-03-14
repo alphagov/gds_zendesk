@@ -1,3 +1,7 @@
+# 2.1.0
+
+* Add test helper to stub Zendesk returning a 409
+
 # 2.0.0
 
 * Removed: GDSZendesk::FIELD_MAPPINGS.
