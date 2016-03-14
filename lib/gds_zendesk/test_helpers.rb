@@ -46,6 +46,10 @@ module GDSZendesk
       stub_request(:any, /#{zendesk_endpoint}\/.*/).to_return(status: 503)
     end
 
+    def zendesk_returns_conflict
+      stub_request(:any, /#{zendesk_endpoint}\/.*/).to_return(status: 409)
+    end
+
     def zendesk_endpoint
       "https://#{valid_zendesk_credentials["username"]}:#{valid_zendesk_credentials["password"]}@govuk.zendesk.com/api/v2"
     end
