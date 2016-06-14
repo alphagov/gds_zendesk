@@ -24,7 +24,7 @@ module GDSZendesk
       check_that_username_and_password_are_provided
 
       ZendeskAPI::Client.new { |config|
-        config.url = "https://govuk.zendesk.com/api/v2/"
+        config.url = url
         config.username = username
         config.password = password
         config.logger = logger
@@ -49,8 +49,15 @@ module GDSZendesk
       @config_options[:password] || @config_options["password"]
     end
 
+    def url
+      @config_options[:url] || @config_options["url"]
+    end
+
     def defaults
-      { logger: NullLogger.instance }
+      {
+          logger: NullLogger.instance,
+          url: "https://govuk.zendesk.com/api/v2/"
+      }
     end
   end
 end

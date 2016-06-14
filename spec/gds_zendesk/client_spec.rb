@@ -35,6 +35,14 @@ module GDSZendesk
       expect(client(logger: custom_logger).config_options[:logger]).to eq(custom_logger)
     end
 
+    it "should use the default url if no url is provided" do
+      expect(client.config_options[:url]).to eq "https://govuk.zendesk.com/api/v2/"
+    end
+
+    it "should use the configured url if provided" do
+      expect(Client.new(username: "test_user", password: "test_pass", url: "https://example.com").config_options[:url]).to eq "https://example.com"
+    end
+
     it "should raise tickets in Zendesk" do
       self.valid_zendesk_credentials = valid_credentials
       post_stub = stub_zendesk_ticket_creation(some: "data")
