@@ -1,3 +1,7 @@
+# 2.2.0
+
+* Allow the zendesk URL to be specified in the configuration
+
 # 2.1.0
 
 * Add test helper to stub Zendesk returning a 409
