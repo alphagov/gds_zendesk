@@ -1,3 +1,7 @@
+# 2.3.0
+
+* Add a test helper to stub Zendesk returning a 302
+
 # 2.2.0
 
 * Allow the zendesk URL to be specified in the configuration
