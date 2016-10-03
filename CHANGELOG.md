@@ -1,3 +1,8 @@
+# 2.3.1
+
+* Patch release as the previous upgrade didn't include the required 
+  feature due to rapid successive merges.
+
 # 2.3.0
 
 * Add a test helper to stub Zendesk returning a 302
