@@ -1,6 +1,11 @@
+# 2.4.0
+
+* Update the `zendesk_api` library to v1.14.4 to silence warnings from
+Hashie about setting a key called `class`.
+
 # 2.3.1
 
-* Patch release as the previous upgrade didn't include the required 
+* Patch release as the previous upgrade didn't include the required
   feature due to rapid successive merges.
 
 # 2.3.0
