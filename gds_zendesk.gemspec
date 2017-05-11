@@ -18,10 +18,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'null_logger', '0.0.1'
-  gem.add_dependency 'zendesk_api', '1.8.0'
+  gem.add_dependency 'zendesk_api', '1.14.4'
 
   gem.add_development_dependency 'rake', '10.0.3'
   gem.add_development_dependency 'rspec', '3.1.0'
-  gem.add_development_dependency 'gem_publisher', '1.2.0'
   gem.add_development_dependency "webmock", '1.18.0'
 end
