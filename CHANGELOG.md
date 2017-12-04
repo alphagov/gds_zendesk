@@ -1,3 +1,9 @@
+# Development
+
+* Update the `webmock` library to version v2.3.2 to be compatible with Ruby
+2.4.2
+* Update the `test_helpers` to be compatible with `webmock` v2.3.2
+
 # 2.4.0
 
 * Update the `zendesk_api` library to v1.14.4 to silence warnings from
