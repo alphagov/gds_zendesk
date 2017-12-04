@@ -54,7 +54,7 @@ module GDSZendesk
 
     it "raises an exception if the ticket creation wasn't successful" do
       self.valid_zendesk_credentials = valid_credentials
-      post_stub = stub_http_request(:post, "#{zendesk_endpoint}/tickets").to_return(status: 302)
+      post_stub = stub_request(:post, "#{zendesk_endpoint}/tickets").to_return(status: 302)
 
       expect { client.ticket.create!(some: "data") }.to raise_error
       expect(post_stub).to have_been_requested
