@@ -1,4 +1,4 @@
-# Development
+# 3.0.0
 
 * Update the `webmock` library to version v2.3.2 to be compatible with Ruby
 2.4.2
