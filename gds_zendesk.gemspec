@@ -6,8 +6,8 @@ require 'gds_zendesk/version'
 Gem::Specification.new do |gem|
   gem.name          = "gds_zendesk"
   gem.version       = GDSZendesk::VERSION
-  gem.authors       = ["Jake Benilov"]
-  gem.email         = ["benilov@gmail.com"]
+  gem.authors       = ["GOV.UK Dev"]
+  gem.email         = ["govuk-dev@digital.cabinet-office.gov.uk"]
   gem.description   = %q{Client and models for communicating with Zendesk}
   gem.summary       = %q{Client and models for communicating with Zendesk}
   gem.homepage      = "https://github.com/alphagov/gds_zendesk"
