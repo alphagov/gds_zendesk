@@ -1,4 +1,4 @@
-# Unreleased
+# 3.1.0
 
 * Update `zendesk_api` library to v1.27
 
