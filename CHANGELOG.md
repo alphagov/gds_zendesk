@@ -1,3 +1,7 @@
+# Unreleased
+
+* Update `zendesk_api` library to v1.27
+
 # 3.0.0
 
 * Update the `webmock` library to version v2.3.2 to be compatible with Ruby
