@@ -26,7 +26,8 @@ module GDSZendesk
       ZendeskAPI::Client.new { |config|
         config.url = url
         config.username = username
-        config.password = password
+        config.token = token if token
+        config.password = password if password
         config.logger = logger
       }
     end
@@ -38,11 +39,16 @@ module GDSZendesk
 
     def check_that_username_and_password_are_provided
       raise ArgumentError, "Zendesk username not provided" if username.nil?
-      raise ArgumentError, "Zendesk password not provided" if password.nil?
+      raise ArgumentError, "Zendesk password or token not provided" if password.nil? && token.nil?
+      raise ArgumentError, "Provide only one of token or password" unless password.nil? || token.nil?
     end
 
     def username
       @config_options[:username] || @config_options["username"]
+    end
+
+    def token
+      @config_options[:token] || @config_options["token"]
     end
 
     def password
