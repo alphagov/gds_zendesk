@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
-require 'gds_zendesk/client'
-require 'gds_zendesk/users'
-require 'gds_zendesk/test_helpers'
+require "gds_zendesk/client"
+require "gds_zendesk/users"
+require "gds_zendesk/test_helpers"
 
 module GDSZendesk
   describe Users do
@@ -46,10 +46,10 @@ module GDSZendesk
             name: "Abc",
             email: "test@test.com",
             phone: "12345",
-            details: "Job title: Developer"
+            details: "Job title: Developer",
           )
           user_being_requested = double("requested user",
-            name: "Abc", email: "test@test.com", phone: "12345", job: "Developer")
+                                        name: "Abc", email: "test@test.com", phone: "12345", job: "Developer")
 
           users.create_or_update_user(user_being_requested)
           expect(stub_post).to have_been_requested

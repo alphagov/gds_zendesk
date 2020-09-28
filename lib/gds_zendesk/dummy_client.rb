@@ -1,5 +1,5 @@
-require 'null_logger'
-require 'zendesk_api/error'
+require "null_logger"
+require "zendesk_api/error"
 
 module GDSZendesk
   class DummyClient
@@ -23,13 +23,14 @@ module GDSZendesk
       @options = options
       if should_raise_error?
         @logger.info("Simulating Zendesk ticket creation failure: #{options.inspect}")
-        raise ZendeskAPI::Error::RecordInvalid.new(body: {"details" => "sample error message from Zendesk"})
+        raise ZendeskAPI::Error::RecordInvalid.new(body: { "details" => "sample error message from Zendesk" })
       else
         @logger.info("Zendesk ticket created: #{options.inspect}")
       end
     end
 
-    protected
+  protected
+
     def should_raise_error?
       description =~ /break_zendesk/ or comment =~ /break_zendesk/
     end
@@ -48,11 +49,11 @@ module GDSZendesk
       @logger = logger
     end
 
-    def search(attributes)
+    def search(_attributes)
       []
     end
 
-    def suspended?(user_email)
+    def suspended?(_user_email)
       false
     end
 
