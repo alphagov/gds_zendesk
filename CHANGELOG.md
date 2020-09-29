@@ -1,4 +1,4 @@
-# Unreleased
+# 3.2.0
 
 * Allow use of a token instead of password
 
