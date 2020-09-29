@@ -32,7 +32,7 @@ This generates an initializer at `config/initializers/gds_zendesk.rb`.
 
 #### Mandatory settings
 
-This gem needs to be configured with a Zendesk username and password before it can be used.
+This gem needs to be configured with a Zendesk username and password (or token)  before it can be used.
 These are set in `config/initializers/gds_zendesk.rb`
 
 #### Enabling development mode

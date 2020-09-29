@@ -8,7 +8,7 @@ GDS_ZENDESK_CLIENT = if Rails.env.development? || Rails.env.test?
 else
   config_yaml_file = File.join(Rails.root, 'config', 'zendesk.yml')
   config = YAML.load_file(config_yaml_file)[Rails.env]
-  GDSZendesk::Client.new(username: config['username'], password: config['password'], logger: Rails.logger)
+  GDSZendesk::Client.new(username: config['username'], password: config['password'], token: config['token'], logger: Rails.logger)
 end
 END
 

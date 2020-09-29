@@ -1,3 +1,7 @@
+# Unreleased
+
+* Allow use of a token instead of password
+
 # 3.1.0
 
 * Update `zendesk_api` library to v1.27

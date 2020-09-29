@@ -20,9 +20,24 @@ module GDSZendesk
         /username not provided/)
     end
 
-    it "should raise an error if no password is provided" do
+    it "should raise an error if no password or token is provided" do
       expect { Client.new(username: "abc") }.to raise_error(ArgumentError,
-        /password not provided/)
+        /password or token not provided/)
+    end
+
+    it "should raise an error if token and password are provided" do
+      expect { Client.new(username: "abc", token: "def", password: "ghi") }.to raise_error(ArgumentError,
+        /Provide only one of token or password/)
+    end
+
+    it "should not raise an error if token is provided without password" do
+      expect { Client.new(username: "abc", token: "def") }.not_to raise_error(ArgumentError,
+        /password or token not provided/)
+    end
+
+    it "should not raise an error if password is provided without token" do
+      expect { Client.new(username: "abc", password: "def") }.not_to raise_error(ArgumentError,
+        /password or token not provided/)
     end
 
     it "should use a null logger if no logger has been provided" do
@@ -37,6 +52,14 @@ module GDSZendesk
 
     it "should use the default url if no url is provided" do
       expect(client.config_options[:url]).to eq "https://govuk.zendesk.com/api/v2/"
+    end
+
+    it "should use the token if provided" do
+      expect(Client.new(username: "test_user", token: "test_token").config_options[:token]).to eq "test_token"
+    end
+
+    it "should use the password if provided" do
+      expect(Client.new(username: "test_user", password: "test_password").config_options[:password]).to eq "test_password"
     end
 
     it "should use the configured url if provided" do
