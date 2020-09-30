@@ -24,7 +24,8 @@ module GDSZendesk
       end
     end
 
-    protected
+  protected
+
     def find_by_email(email)
       @client.users.search(query: email).to_a
     end

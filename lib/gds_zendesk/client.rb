@@ -1,8 +1,8 @@
-require 'forwardable'
-require 'null_logger'
-require 'zendesk_api'
+require "forwardable"
+require "null_logger"
+require "zendesk_api"
 
-require 'gds_zendesk/users'
+require "gds_zendesk/users"
 
 module GDSZendesk
   class Client
@@ -23,16 +23,17 @@ module GDSZendesk
     def build
       check_that_username_and_password_are_provided
 
-      ZendeskAPI::Client.new { |config|
+      ZendeskAPI::Client.new do |config|
         config.url = url
         config.username = username
         config.token = token if token
         config.password = password if password
         config.logger = logger
-      }
+      end
     end
 
-    protected
+  protected
+
     def logger
       @config_options[:logger] || @config_options["logger"]
     end
@@ -61,8 +62,8 @@ module GDSZendesk
 
     def defaults
       {
-          logger: NullLogger.instance,
-          url: "https://govuk.zendesk.com/api/v2/"
+        logger: NullLogger.instance,
+        url: "https://govuk.zendesk.com/api/v2/",
       }
     end
   end

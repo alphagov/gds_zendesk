@@ -53,3 +53,11 @@ GDSZendesk::Client.new(config_options)
 ```
 
 to create a new client.
+
+## Running tests locally
+
+To run the tests, use the follow:
+
+```
+bundle exec rake default
+```

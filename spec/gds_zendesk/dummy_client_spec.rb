@@ -1,4 +1,4 @@
-require 'gds_zendesk/dummy_client'
+require "gds_zendesk/dummy_client"
 
 module GDSZendesk
   describe DummyClient do
