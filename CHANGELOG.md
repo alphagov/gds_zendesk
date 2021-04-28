@@ -1,4 +1,4 @@
-# Unreleased
+# 3.3.0
 
 * Allow access to Zendesk::Client from GDSZendesk::Client
 
