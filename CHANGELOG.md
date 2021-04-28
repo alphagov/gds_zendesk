@@ -1,3 +1,7 @@
+# Unreleased
+
+* Allow access to Zendesk::Client from GDSZendesk::Client
+
 # 3.2.0
 
 * Allow use of a token instead of password
