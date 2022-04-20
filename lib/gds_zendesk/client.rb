@@ -10,6 +10,7 @@ module GDSZendesk
     def_delegators :@zendesk_client, :ticket
 
     attr_accessor :config_options
+    attr_reader :zendesk_client
 
     def initialize(config_options)
       @config_options = defaults.merge(config_options)
