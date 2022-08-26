@@ -68,7 +68,7 @@ module GDSZendesk
 
     it "should raise tickets in Zendesk" do
       self.valid_zendesk_credentials = valid_credentials
-      post_stub = stub_zendesk_ticket_creation(some: "data")
+      post_stub = stub_zendesk_ticket_creation(some: "data", comment: nil)
 
       client.ticket.create(some: "data")
 
