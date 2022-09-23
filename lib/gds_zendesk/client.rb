@@ -6,9 +6,6 @@ require "gds_zendesk/users"
 
 module GDSZendesk
   class Client
-    extend Forwardable
-    def_delegators :@zendesk_client, :ticket
-
     attr_accessor :config_options
     attr_reader :zendesk_client
 
@@ -31,6 +28,10 @@ module GDSZendesk
         config.password = password if password
         config.logger = logger
       end
+    end
+
+    def ticket
+      @zendesk_client.ticket
     end
 
   protected
