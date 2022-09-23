@@ -16,7 +16,7 @@ module GDSZendesk
       end
 
       context "creating/updating a user" do
-        it "should update the phone and job title if those are set" do
+        it "updates the phone and job title if those are set" do
           stub_post = stub_zendesk_user_update(123, phone: "12345", details: "Job title: Developer")
           users.create_or_update_user(double("requested user", email: "test@test.com", phone: "12345", job: "Developer"))
 
@@ -24,9 +24,9 @@ module GDSZendesk
         end
       end
 
-      it "should know whether the user is suspended or not" do
+      it "knows whether the user is suspended or not" do
         zendesk_has_user(email: "test@test.com", id: 123, suspended: "true")
-        expect(users.suspended?("test@test.com")).to be_truthy
+        expect(users).to be_suspended("test@test.com")
       end
     end
 
@@ -35,12 +35,12 @@ module GDSZendesk
         zendesk_has_no_user_with_email("test@test.com")
       end
 
-      it "should not be suspended" do
-        expect(users).to_not be_suspended("test@test.com")
+      it "is not suspended" do
+        expect(users).not_to be_suspended("test@test.com")
       end
 
       context "creating/updating" do
-        it "should create that user" do
+        it "creates that user" do
           stub_post = stub_zendesk_user_creation(
             verified: true,
             name: "Abc",
