@@ -1,3 +1,8 @@
+# Unreleased
+
+* Require a `zendesk_api` of v1.3.7
+* Drop support for Ruby < 2.6
+
 # 3.3.0
 
 * Allow access to Zendesk::Client from GDSZendesk::Client
