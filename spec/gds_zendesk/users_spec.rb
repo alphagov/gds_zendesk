@@ -4,6 +4,7 @@ require "gds_zendesk/client"
 require "gds_zendesk/users"
 require "gds_zendesk/test_helpers"
 
+# rubocop:disable RSpec/VerifiedDoubles -- It's unclear that the user classes can be verified doubles
 module GDSZendesk
   describe Users do
     include GDSZendesk::TestHelpers
@@ -54,3 +55,4 @@ module GDSZendesk
     end
   end
 end
+# rubocop:enable RSpec/VerifiedDoubles
