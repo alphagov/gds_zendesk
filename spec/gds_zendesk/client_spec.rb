@@ -31,13 +31,11 @@ module GDSZendesk
     end
 
     it "does not raise an error if token is provided without password" do
-      expect { described_class.new(username: "abc", token: "def") }.not_to raise_error(ArgumentError,
-                                                                                       /password or token not provided/)
+      expect { described_class.new(username: "abc", token: "def") }.not_to raise_error
     end
 
     it "does not raise an error if password is provided without token" do
-      expect { described_class.new(username: "abc", password: "def") }.not_to raise_error(ArgumentError,
-                                                                                          /password or token not provided/)
+      expect { described_class.new(username: "abc", password: "def") }.not_to raise_error
     end
 
     it "uses a null logger if no logger has been provided" do
@@ -79,7 +77,7 @@ module GDSZendesk
       self.valid_zendesk_credentials = valid_credentials
       post_stub = stub_request(:post, "#{zendesk_endpoint}/tickets").to_return(status: 302)
 
-      expect { client.ticket.create!(some: "data") }.to raise_error
+      expect { client.ticket.create!(some: "data") }.to raise_error(ZendeskAPI::Error::NetworkError)
       expect(post_stub).to have_been_requested
     end
   end
