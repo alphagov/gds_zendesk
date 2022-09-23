@@ -10,18 +10,16 @@ module GDSZendesk
 
     let(:users) { Client.new(valid_zendesk_credentials).users }
 
-    context "existing users" do
+    context "when there is an existing user" do
       before do
         zendesk_has_user(email: "test@test.com", id: 123)
       end
 
-      context "creating/updating a user" do
-        it "updates the phone and job title if those are set" do
-          stub_post = stub_zendesk_user_update(123, phone: "12345", details: "Job title: Developer")
-          users.create_or_update_user(double("requested user", email: "test@test.com", phone: "12345", job: "Developer"))
+      it "can update the user" do
+        stub_post = stub_zendesk_user_update(123, phone: "12345", details: "Job title: Developer")
+        users.create_or_update_user(double("requested user", email: "test@test.com", phone: "12345", job: "Developer"))
 
-          expect(stub_post).to have_been_requested
-        end
+        expect(stub_post).to have_been_requested
       end
 
       it "knows whether the user is suspended or not" do
@@ -30,30 +28,28 @@ module GDSZendesk
       end
     end
 
-    context "non-existent users" do
+    context "when a user doesn't exist" do
       before do
         zendesk_has_no_user_with_email("test@test.com")
       end
 
-      it "is not suspended" do
+      it "doesn't have any suspended users" do
         expect(users).not_to be_suspended("test@test.com")
       end
 
-      context "creating/updating" do
-        it "creates that user" do
-          stub_post = stub_zendesk_user_creation(
-            verified: true,
-            name: "Abc",
-            email: "test@test.com",
-            phone: "12345",
-            details: "Job title: Developer",
-          )
-          user_being_requested = double("requested user",
-                                        name: "Abc", email: "test@test.com", phone: "12345", job: "Developer")
+      it "can create that user" do
+        stub_post = stub_zendesk_user_creation(
+          verified: true,
+          name: "Abc",
+          email: "test@test.com",
+          phone: "12345",
+          details: "Job title: Developer",
+        )
+        user_being_requested = double("requested user",
+                                      name: "Abc", email: "test@test.com", phone: "12345", job: "Developer")
 
-          users.create_or_update_user(user_being_requested)
-          expect(stub_post).to have_been_requested
-        end
+        users.create_or_update_user(user_being_requested)
+        expect(stub_post).to have_been_requested
       end
     end
   end
