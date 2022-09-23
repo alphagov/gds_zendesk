@@ -16,18 +16,18 @@ module GDSZendesk
     end
 
     it "raises an error if no username is provided" do
-      expect { described_class.new(password: "abc") }.to raise_error(ArgumentError,
-                                                                     /username not provided/)
+      expect { described_class.new(password: "abc") }
+        .to raise_error(ArgumentError, /username not provided/)
     end
 
     it "raises an error if no password or token is provided" do
-      expect { described_class.new(username: "abc") }.to raise_error(ArgumentError,
-                                                                     /password or token not provided/)
+      expect { described_class.new(username: "abc") }
+        .to raise_error(ArgumentError, /password or token not provided/)
     end
 
     it "raises an error if token and password are provided" do
-      expect { described_class.new(username: "abc", token: "def", password: "ghi") }.to raise_error(ArgumentError,
-                                                                                                    /Provide only one of token or password/)
+      expect { described_class.new(username: "abc", token: "def", password: "ghi") }
+        .to raise_error(ArgumentError, /Provide only one of token or password/)
     end
 
     it "does not raise an error if token is provided without password" do
@@ -61,7 +61,8 @@ module GDSZendesk
     end
 
     it "uses the configured url if provided" do
-      expect(described_class.new(username: "test_user", password: "test_pass", url: "https://example.com").config_options[:url]).to eq "https://example.com"
+      instance = described_class.new(username: "test_user", password: "test_pass", url: "https://example.com")
+      expect(instance.config_options[:url]).to eq "https://example.com"
     end
 
     it "raises tickets in Zendesk" do
