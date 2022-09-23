@@ -11,6 +11,8 @@ Gem::Specification.new do |gem|
   gem.summary       = "Client and models for communicating with Zendesk"
   gem.homepage      = "https://github.com/alphagov/gds_zendesk"
 
+  gem.required_ruby_version = ">= 2.7.0"
+
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
