@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "null_logger", "~> 0"
   gem.add_dependency "zendesk_api", "~> 1.27"
 
-  gem.add_development_dependency "rake", "~> 13"
+  gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 3"
   gem.add_development_dependency "rubocop-govuk", "~> 3"
   gem.add_development_dependency "webmock", ">= 2"
