@@ -61,6 +61,6 @@ To run the tests, use the follow:
 ```
 bundle exec rake default
 ```
-# Licence
+# Licence
 
 [MIT License](LICENCE)
