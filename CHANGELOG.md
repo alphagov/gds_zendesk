@@ -1,5 +1,6 @@
 # Unreleased
 
+* Drop support for Ruby 2.7.
 * Require a `zendesk_api` of v1.3.7
 * Drop support for Ruby < 2.6
 
