@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = %w[lib]
 
   gem.add_dependency "null_logger", "~> 0"
-  gem.add_dependency "zendesk_api", ">= 1.37", "< 3.0"
+  gem.add_dependency "zendesk_api", ">= 1.37", "< 4.0"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 3"
