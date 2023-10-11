@@ -1,3 +1,7 @@
+# 3.5.0
+
+* Add support for `zendesk_api` v3.x
+
 # 3.4.0
 
 * Drop support for Ruby 2.7 and below.
