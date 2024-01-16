@@ -46,8 +46,9 @@ module GDSZendesk
           phone: "12345",
           details: "Job title: Developer",
         )
-        user_being_requested = double("requested user",
-                                      name: "Abc", email: "test@test.com", phone: "12345", job: "Developer")
+        user_being_requested = double("requested user", {
+          name: "Abc", email: "test@test.com", phone: "12345", job: "Developer"
+        })
 
         users.create_or_update_user(user_being_requested)
         expect(stub_post).to have_been_requested
