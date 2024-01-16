@@ -31,11 +31,7 @@ module GDSZendesk
     end
 
     def create(requested_user)
-      attributes = {
-        email: requested_user.email,
-        name: requested_user.name,
-        verified: true,
-      }
+      attributes = { email: requested_user.email, name: requested_user.name, verified: true }
       attributes[:details] = "Job title: #{requested_user.job}" if requested_user.respond_to?(:job)
       attributes[:phone] = requested_user.phone if requested_user.respond_to?(:phone)
       @client.users.create!(attributes)
