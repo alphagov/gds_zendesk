@@ -30,6 +30,16 @@ module GDSZendesk
     end
 
     context "when a user doesn't exist" do
+      let(:expected_attributes) do
+        {
+          verified: true,
+          name: "Abc",
+          email: "test@test.com",
+          phone: "12345",
+          details: "Job title: Developer",
+        }
+      end
+
       before do
         zendesk_has_no_user_with_email("test@test.com")
       end
@@ -39,13 +49,7 @@ module GDSZendesk
       end
 
       it "can create that user" do
-        stub_post = stub_zendesk_user_creation(
-          verified: true,
-          name: "Abc",
-          email: "test@test.com",
-          phone: "12345",
-          details: "Job title: Developer",
-        )
+        stub_post = stub_zendesk_user_creation(expected_attributes)
         user_being_requested = double("requested user", {
           name: "Abc", email: "test@test.com", phone: "12345", job: "Developer"
         })
