@@ -44,10 +44,10 @@ module GDSZendesk
     def update(existing_user_in_zendesk, requested_user)
       attributes = {}
       attributes[:details] = "Job title: #{requested_user.job}" if requested_user.respond_to?(:job)
-      existing_user_in_zendesk.update(attributes)
       if !requested_user.phone.nil? && !requested_user.phone.empty?
-        existing_user_in_zendesk.update(phone: requested_user.phone)
+        attributes[:phone] = requested_user.phone
       end
+      existing_user_in_zendesk.update(attributes)
       existing_user_in_zendesk.save
       existing_user_in_zendesk
     end
