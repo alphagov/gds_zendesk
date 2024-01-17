@@ -31,18 +31,19 @@ module GDSZendesk
     end
 
     def create(requested_user)
-      @client.users.create!(email: requested_user.email,
-                            name: requested_user.name,
-                            details: "Job title: #{requested_user.job}",
-                            phone: requested_user.phone,
-                            verified: true)
+      attributes = { email: requested_user.email, name: requested_user.name, verified: true }
+      attributes[:details] = "Job title: #{requested_user.job}" if requested_user.respond_to?(:job)
+      attributes[:phone] = requested_user.phone if requested_user.respond_to?(:phone)
+      @client.users.create!(attributes)
     end
 
     def update(existing_user_in_zendesk, requested_user)
-      existing_user_in_zendesk.update(details: "Job title: #{requested_user.job}")
-      if !requested_user.phone.nil? && !requested_user.phone.empty?
-        existing_user_in_zendesk.update(phone: requested_user.phone)
+      attributes = {}
+      attributes[:details] = "Job title: #{requested_user.job}" if requested_user.respond_to?(:job)
+      if requested_user.respond_to?(:phone) && !requested_user.phone.nil? && !requested_user.phone.empty?
+        attributes[:phone] = requested_user.phone
       end
+      existing_user_in_zendesk.update(attributes)
       existing_user_in_zendesk.save
       existing_user_in_zendesk
     end
