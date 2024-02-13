@@ -1,3 +1,8 @@
+# Unreleased
+
+* Drop support for Ruby 3.0. The minimum required Ruby version is now 3.1.4.
+* Add support for Ruby 3.3.
+
 # 3.6.0
 
 * Don't require requested user object to respond to `#job` or `#phone` in calls to `Users#create_or_update_user`
