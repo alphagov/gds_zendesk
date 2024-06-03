@@ -1,3 +1,7 @@
+# 3.7.0
+
+* Drop support for Ruby 3.0.
+
 # 3.6.0
 
 * Don't require requested user object to respond to `#job` or `#phone` in calls to `Users#create_or_update_user`
