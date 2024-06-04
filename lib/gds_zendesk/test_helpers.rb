@@ -34,7 +34,7 @@ module GDSZendesk
 
     def stub_zendesk_ticket_creation_with_body(body)
       stub_request(:post, "#{zendesk_endpoint}/tickets")
-        .with(body: body)
+        .with(body:)
         .with(basic_auth: basic_auth_credentials)
         .to_return(status: 201, body: { ticket: { id: 12_345 } }.to_json,
                    headers: { "Content-Type" => "application/json" })

@@ -9,13 +9,13 @@ module GDSZendesk
         logger = instance_double("Logger")
         expect(logger).to receive(:info).with("Zendesk ticket created: #{ticket_options.inspect}")
 
-        client = described_class.new(logger: logger)
+        client = described_class.new(logger:)
         client.ticket.create!(ticket_options)
       end
 
       it "can simulate failures, triggered by a specific description or comment" do
         logger = instance_double("Logger")
-        client = described_class.new(logger: logger)
+        client = described_class.new(logger:)
         expect(logger).to receive(:info).with(/Simulating Zendesk ticket creation failure/).twice
 
         expect {
@@ -35,7 +35,7 @@ module GDSZendesk
         logger = instance_double("Logger")
         expect(logger).to receive(:info).with("Zendesk user created or updated: #{options.inspect}")
 
-        client = described_class.new(logger: logger)
+        client = described_class.new(logger:)
         client.users.create_or_update_user(options)
       end
     end
