@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 3"
-  gem.add_development_dependency "rubocop-govuk", "4.17.1"
+  gem.add_development_dependency "rubocop-govuk", "4.18.0"
   gem.add_development_dependency "simplecov"
   gem.add_development_dependency "webmock", ">= 2"
 end
