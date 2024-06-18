@@ -1,3 +1,7 @@
+# 3.7.1
+
+* Add Gem Bump Checker workflow.
+
 # 3.7.0
 
 * Drop support for Ruby 3.0.
