@@ -46,6 +46,10 @@
 
 * Update dependencies
 
+# 3.7.1
+
+* Update dependencies
+
 # 3.7.0
 
 * Drop support for Ruby 3.0.
