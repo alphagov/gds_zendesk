@@ -43,7 +43,7 @@ module GDSZendesk
     end
 
     it "uses the passed logger if one has been provided" do
-      custom_logger = instance_double("Logger")
+      custom_logger = instance_double(Logger)
 
       expect(client(logger: custom_logger).config_options[:logger]).to eq(custom_logger)
     end
