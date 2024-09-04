@@ -1,5 +1,7 @@
 # GDS Zendesk
 
+> This gem was archived. The functionality was ported to [Support API](https://github.com/alphagov/support-api). 
+
 ## What is it?
 
 `gds_zendesk` is a Ruby gem which (partially) wraps the [Zendesk REST API v2](http://developer.zendesk.com/documentation/rest_api/introduction.html).
